@@ -1,0 +1,13 @@
+{
+  "itemGroup.mek_addon_lib": "Example Mod Tab",
+  "block.mek_addon_lib.example_block": "Example Block",
+  "item.mek_addon_lib.example_item": "Example Item",
+
+  "mek_addon_lib.configuration.title": "Mekanism Addon Library Configs",
+  "mek_addon_lib.configuration.section.mek_addon_lib.common.toml": "Mekanism Addon Library Configs",
+  "mek_addon_lib.configuration.section.mek_addon_lib.common.toml.title": "Mekanism Addon Library Configs",
+  "mek_addon_lib.configuration.items": "Item List",
+  "mek_addon_lib.configuration.logDirtBlock": "Log Dirt Block",
+  "mek_addon_lib.configuration.magicNumberIntroduction": "Magic Number Text",
+  "mek_addon_lib.configuration.magicNumber": "Magic Number"
+}
