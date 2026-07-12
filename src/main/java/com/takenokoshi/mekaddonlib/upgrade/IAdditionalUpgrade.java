@@ -6,8 +6,12 @@ import net.minecraft.nbt.CompoundTag;
 
 public interface IAdditionalUpgrade {
 
+    /**
+     * @apiNote DO NOT OVERRIDE!!!
+     * @return actual name used in MekAL Registry
+     */
     default String actualName() {
-        return modId() + "$" + path();
+        return (modId() + "$" + path()).toLowerCase();
     }
 
     String modId();

@@ -1,15 +1,39 @@
 {
-  "required": true,
-  "package": "com.takenokoshi.mekaddonlib.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "UpgradeMixin",
-    "UpgradeUtilsMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  },
-  "overwrites": {
-    "requireAnnotations": true
-  }
+    "required": true,
+    "package": "com.takenokoshi.mekaddonlib.mixin",
+	"plugin": "com.takenokoshi.mekaddonlib.mixin.MekALMixinPlugin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "emextras.mekmm.TileEntityEMExtrasMMFactoriesMixin",
+        "emextras.TileEntityEMExtraFactoryMixin",
+        "mekanism.BlockTileBuilderMixin",
+        "mekanism.CachedRecipeMixin",
+        "mekanism.MekanismUtilsMixin",
+        "mekanism.OperationTrackerMixin",
+        "mekanism.ReloadListenerMixin",
+        "mekanism.TileComponentEjectorMixin",
+        "mekanism.tile.TileEntityDigitalMinerMixin",
+        "mekanism.tile.TileEntityElectricPumpMixin",
+        "mekanism.tile.TileEntityExpscaledSpeedMachinesMixin",
+        "mekanism.tile.TileEntityFactoryMixin",
+        "mekanism.tile.TileEntityMekanismMixin",
+        "mekanism.tile.TileEntityProgressMachineMixin",
+        "mekanism.UpgradeMixin",
+        "mekanism.UpgradeUtilsMixin",
+        "mekanism_extras.mekmm.TileEntityMekExtrasMMFactoriesMixin",
+        "mekanism_extras.TileEntityAdvancedElectricPumpMixin",
+        "mekanism_extras.TileEntityExtraFactoryMixin",
+        "mekanismelements.MSTileEntityProgressMachineMixin",
+        "mekanismelements.TileEntityElementsResourceGeneratorMachinesMixin",
+        "mekmm.TileEntityAmbientGasCollectorMixin",
+        "mekmm.TileEntityLargeMachinesMixin",
+        "mekmm.TileEntityLargeSolarNeutronActivatorMixin",
+        "mekmm.TileEntityMekMMFactoriesMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
+    }
 }
