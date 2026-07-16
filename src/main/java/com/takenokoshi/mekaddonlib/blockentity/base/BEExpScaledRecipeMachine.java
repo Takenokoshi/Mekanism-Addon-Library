@@ -15,6 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.fml.ModList;
 
 public abstract class BEExpScaledRecipeMachine<RECIPE extends Recipe<?>> extends BlockEntityMekALRecipeMachine<RECIPE> {
 
@@ -28,13 +29,27 @@ public abstract class BEExpScaledRecipeMachine<RECIPE extends Recipe<?>> extends
     }
 
     protected void recaluculateProcessingSpeed() {
+        int baseSpeed = 1 << upgradeComponent.getUpgrades(Upgrade.SPEED);
+        if (ModList.get().isLoaded("mekanism_empowered")) {
+            try {
+                int empowered = upgradeComponent.getUpgrades(Upgrade.valueOf("EMPOWERED_SPEED"));
+                if (empowered > 0) {
+                    baseSpeed += 2 << empowered;
+                }
+            } catch (Exception e) {
+                // if Mekanism:Empowered's Empowered Speed Upgrade's name was changed,
+                // Upgrade.valueOf("EMPOWERED_SPEED") throws error
+            }
+        }
         operationsPerTick = AdditionalUpgradeUtils.modifyOperations(this,
-                1 << upgradeComponent.getUpgrades(Upgrade.SPEED));
+                baseSpeed);
     }
 
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
-        if (upgrade == Upgrade.SPEED || AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
+        if (upgrade == Upgrade.SPEED
+                || upgrade.name().equals("EMPOWERED_SPEED")
+                || AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
             recaluculateProcessingSpeed();
         }
         super.recalculateUpgrades(upgrade);
