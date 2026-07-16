@@ -89,7 +89,9 @@ public abstract class BlockEntityMekALProgressMachine<RECIPE extends Recipe<?>>
 
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED || AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
+        if (upgrade == Upgrade.SPEED
+                || upgrade.name().equals("EMPOWERED_SPEED")
+                || AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
             recaluculateProcessingSpeed();
         }
     }
