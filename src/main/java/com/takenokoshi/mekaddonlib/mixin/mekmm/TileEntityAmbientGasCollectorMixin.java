@@ -10,7 +10,6 @@ import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityMekanismMixin;
 import com.takenokoshi.mekaddonlib.upgrade.AdditionalUpgradeUtils;
 
 import mekanism.api.Upgrade;
-import mekanism.common.tile.machine.TileEntityElectricPump;
 import mekanism.common.util.MekanismUtils;
 
 @Mixin(value = { TileEntityAmbientGasCollector.class }, remap = false)
@@ -26,10 +25,10 @@ public class TileEntityAmbientGasCollectorMixin extends TileEntityMekanismMixin 
     protected void mek_addon_lib$recalculateAdditionalUpgrades(Upgrade upgrade, CallbackInfo ci) {
         super.mek_addon_lib$recalculateAdditionalUpgrades(upgrade, ci);
         if (AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
-            ticksRequired = MekanismUtils.getTicks((TileEntityElectricPump) (Object) this, 19);
-            outputRate = AdditionalUpgradeUtils.modifyPumpOutput((TileEntityElectricPump) (Object) this, outputRate);
+            ticksRequired = MekanismUtils.getTicks((TileEntityAmbientGasCollector) (Object) this, 19);
+            outputRate = AdditionalUpgradeUtils.modifyPumpOutput((TileEntityAmbientGasCollector) (Object) this, outputRate);
         } else if (upgrade == Upgrade.SPEED || upgrade.name().equals("EMPOWERED_SPEED")) {
-            outputRate = AdditionalUpgradeUtils.modifyPumpOutput((TileEntityElectricPump) (Object) this, outputRate);
+            outputRate = AdditionalUpgradeUtils.modifyPumpOutput((TileEntityAmbientGasCollector) (Object) this, outputRate);
         }
     }
 }
