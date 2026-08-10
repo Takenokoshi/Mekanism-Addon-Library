@@ -4,8 +4,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.fxd927.mekanismelements.common.tile.machine.TileEntityAirCompressor;
-import com.fxd927.mekanismelements.common.tile.machine.TileEntitySeawaterPump;
+import fixdol.mekanismelements.common.tile.machine.TileEntityAirCompressor;
+import fixdol.mekanismelements.common.tile.machine.TileEntitySeawaterPump;
 import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityMekanismMixin;
 import com.takenokoshi.mekaddonlib.upgrade.AdditionalUpgradeUtils;
 

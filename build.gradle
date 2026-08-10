@@ -123,7 +123,7 @@ dependencies {
     implementation "curse.maven:mekanism-268560:7904058"
     implementation "curse.maven:mekanism-generators-268566:7904061"
 
-    implementation "curse.maven:mekanism-elements-1103224:8378809"
+    implementation "curse.maven:mekanism-elements-1103224:8531162"
 
     implementation "curse.maven:mekanism-more-machine-1275257:7919872"
 
