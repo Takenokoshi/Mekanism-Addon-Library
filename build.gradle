@@ -125,7 +125,8 @@ dependencies {
 
     implementation "curse.maven:mekanism-elements-1103224:8531162"
 
-    implementation "curse.maven:mekanism-more-machine-1275257:7919872"
+    implementation "curse.maven:mekanism-more-machine-1275257:8659501"
+
 
     implementation "curse.maven:evolved-mekanism-1230085:7599592"
     implementation "curse.maven:iglee-library-541199:7000755"

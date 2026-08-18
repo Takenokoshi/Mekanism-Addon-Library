@@ -3,7 +3,6 @@ package com.takenokoshi.mekaddonlib.mixin.mekmm;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import com.jerry.meklm.common.tile.machine.TileEntityLargeAntiprotonicNucleosynthesizer;
 import com.jerry.meklm.common.tile.machine.TileEntityLargeChemicalInfuser;
 import com.jerry.meklm.common.tile.machine.TileEntityLargeElectrolyticSeparator;
 import com.jerry.meklm.common.tile.machine.TileEntityLargePigmentMixer;
@@ -17,7 +16,6 @@ import mekanism.api.Upgrade;
 import mekanism.common.tile.component.TileComponentUpgrade;
 
 @Mixin(value = {
-        TileEntityLargeAntiprotonicNucleosynthesizer.class,
         TileEntityLargeChemicalInfuser.class,
         TileEntityLargeElectrolyticSeparator.class,
         TileEntityLargePigmentMixer.class,
