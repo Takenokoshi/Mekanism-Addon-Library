@@ -12,6 +12,7 @@
         "mekanism.OperationTrackerMixin",
         "mekanism.ReloadListenerMixin",
         "mekanism.TileComponentEjectorMixin",
+        "mekanism.tile.TileEntityConfigurableMachineMixin",
         "mekanism.tile.TileEntityDigitalMinerMixin",
         "mekanism.tile.TileEntityElectricPumpMixin",
         "mekanism.tile.TileEntityExpscaledSpeedMachinesMixin",

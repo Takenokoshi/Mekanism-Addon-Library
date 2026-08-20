@@ -1,6 +1,8 @@
 package com.takenokoshi.mekaddonlib.blockentity.base;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,18 +19,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.fml.ModList;
 
-public abstract class BEExpScaledRecipeMachine<RECIPE extends Recipe<?>> extends BlockEntityMekALRecipeMachine<RECIPE> {
+public abstract class BEExpScaledRecipeFactory<RECIPE extends Recipe<?>> extends BlockEntityMekALRecipeFactory<RECIPE> {
 
-    public BEExpScaledRecipeMachine(Holder<Block> blockProvider, BlockPos pos, BlockState state,
-            List<RecipeError> errorTypes, int baselineMaxOperations) {
-        super(blockProvider, pos, state, errorTypes, baselineMaxOperations);
+    public BEExpScaledRecipeFactory(Holder<Block> blockProvider, BlockPos pos, BlockState state,
+            List<RecipeError> errorTypes, Set<RecipeError> globalErrorTypes, int baselineMaxOperations) {
+        super(blockProvider, pos, state, errorTypes, globalErrorTypes, baselineMaxOperations);
     }
 
     public @NotNull List<Component> getInfo(@NotNull Upgrade upgrade) {
         return UpgradeUtils.getExpScaledInfo(this, upgrade);
     }
 
-    protected void recalculateProcessingSpeed() {
+    protected void recaluculateProcessingSpeed() {
         int baseSpeed = 1 << upgradeComponent.getUpgrades(Upgrade.SPEED);
         if (ModList.get().isLoaded("mekanism_empowered")) {
             try {
@@ -41,8 +43,9 @@ public abstract class BEExpScaledRecipeMachine<RECIPE extends Recipe<?>> extends
                 // Upgrade.valueOf("EMPOWERED_SPEED") throws error
             }
         }
-        operationsPerTick = AdditionalUpgradeUtils.modifyOperations(this,
+        int operationsPerTick = AdditionalUpgradeUtils.modifyOperations(this,
                 baseSpeed);
+        Arrays.fill(operationsPerTicks, operationsPerTick);
     }
 
     @Override
@@ -50,7 +53,7 @@ public abstract class BEExpScaledRecipeMachine<RECIPE extends Recipe<?>> extends
         if (upgrade == Upgrade.SPEED
                 || upgrade.name().equals("EMPOWERED_SPEED")
                 || AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
-            recalculateProcessingSpeed();
+            recaluculateProcessingSpeed();
         }
         super.recalculateUpgrades(upgrade);
     }

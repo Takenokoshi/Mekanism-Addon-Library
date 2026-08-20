@@ -31,7 +31,7 @@ public abstract class BEExpScaledProgressMachine<RECIPE extends Recipe<?>>
     }
 
     @Override
-    protected void recaluculateProcessingSpeed() {
+    protected void recalculateProcessingSpeed() {
         int speedFactor = 1 << upgradeComponent.getUpgrades(Upgrade.SPEED);
         speedFactor = AdditionalUpgradeUtils.modifyOperations(this, speedFactor);
         if (speedFactor > recipeTicksRequired) {

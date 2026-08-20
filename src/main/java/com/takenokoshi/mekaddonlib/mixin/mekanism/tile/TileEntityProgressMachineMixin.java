@@ -13,7 +13,7 @@ import mekanism.common.tile.prefab.TileEntityProgressMachine;
 import mekanism.common.util.MekanismUtils;
 
 @Mixin(value = { TileEntityProgressMachine.class }, remap = false)
-public class TileEntityProgressMachineMixin extends TileEntityMekanismMixin {
+public class TileEntityProgressMachineMixin extends TileEntityConfigurableMachineMixin {
 
     @Shadow(remap = false)
     private int baseTicksRequired;

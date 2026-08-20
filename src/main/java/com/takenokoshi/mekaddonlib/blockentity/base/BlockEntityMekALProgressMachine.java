@@ -82,17 +82,17 @@ public abstract class BlockEntityMekALProgressMachine<RECIPE extends Recipe<?>>
     public void onCachedRecipeChanged(@Nullable ICachedRecipe<RECIPE> cachedRecipe, int cacheIndex) {
         super.onCachedRecipeChanged(cachedRecipe, cacheIndex);
         recipeTicksRequired = recipeTicksGetter.applyAsInt(cachedRecipe.getRecipe());
-        recaluculateProcessingSpeed();
+        recalculateProcessingSpeed();
     }
 
-    protected abstract void recaluculateProcessingSpeed();
+    protected abstract void recalculateProcessingSpeed();
 
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
         if (upgrade == Upgrade.SPEED
                 || upgrade.name().equals("EMPOWERED_SPEED")
                 || AdditionalUpgradeUtils.isSpeedModifier(upgrade)) {
-            recaluculateProcessingSpeed();
+            recalculateProcessingSpeed();
         }
     }
 

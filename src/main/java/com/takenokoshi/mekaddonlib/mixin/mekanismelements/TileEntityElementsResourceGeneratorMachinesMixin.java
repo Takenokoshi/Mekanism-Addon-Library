@@ -6,14 +6,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import fixdol.mekanismelements.common.tile.machine.TileEntityAirCompressor;
 import fixdol.mekanismelements.common.tile.machine.TileEntitySeawaterPump;
-import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityMekanismMixin;
+
+import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityConfigurableMachineMixin;
 import com.takenokoshi.mekaddonlib.upgrade.AdditionalUpgradeUtils;
 
 import mekanism.api.Upgrade;
 import mekanism.common.util.MekanismUtils;
 
 @Mixin(value = { TileEntityAirCompressor.class, TileEntitySeawaterPump.class }, remap = false)
-public class TileEntityElementsResourceGeneratorMachinesMixin extends TileEntityMekanismMixin {
+public class TileEntityElementsResourceGeneratorMachinesMixin extends TileEntityConfigurableMachineMixin {
 
     @Shadow(remap = false)
     private int ticksRequired;

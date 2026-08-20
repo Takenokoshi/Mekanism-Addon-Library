@@ -13,6 +13,7 @@ import mekanism.api.energy.IEnergyContainer;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.tile.base.TileEntityMekanism;
 import mekanism.common.tile.component.TileComponentUpgrade;
+import net.minecraft.core.Direction;
 
 @Mixin(value = { TileEntityMekanism.class }, remap = false)
 public class TileEntityMekanismMixin {
@@ -30,6 +31,10 @@ public class TileEntityMekanismMixin {
                 }
             }
         }
+    }
+
+    @Inject(method = "Lmekanism/common/tile/base/TileEntityMekanism;setFacing(Lnet/minecraft/core/Direction;Z)V", at = @At("RETURN"))
+    protected void mek_addon_lib$onSetFacing(Direction direction, boolean notifyCaps, CallbackInfo ci) {
     }
 
 }

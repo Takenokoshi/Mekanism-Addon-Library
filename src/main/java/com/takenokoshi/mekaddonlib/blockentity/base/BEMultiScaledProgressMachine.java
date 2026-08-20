@@ -29,7 +29,7 @@ public abstract class BEMultiScaledProgressMachine<RECIPE extends Recipe<?>>
         return UpgradeUtils.getMultScaledInfo(this, upgrade);
     }
 
-    protected void recaluculateProcessingSpeed() {
+    protected void recalculateProcessingSpeed() {
         double ticksD = MekanismUtils.getTicksD(this, recipeTicksRequired);
         if (ticksD < 1) {
             operationsPerTick = MathUtils.clampToInt(baselineMaxOperations / ticksD);

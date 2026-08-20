@@ -2,8 +2,10 @@ package com.takenokoshi.mekaddonlib.blockentity.component;
 
 import java.util.function.BiPredicate;
 
+import mekanism.api.RelativeSide;
 import mekanism.api.chemical.IChemicalTank;
 import mekanism.api.fluid.IExtendedFluidTank;
+import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.tile.component.config.DataType;
 
 public interface IEjectorComponentAccess {
@@ -11,4 +13,8 @@ public interface IEjectorComponentAccess {
     void mek_addon_lib$setCanFluidTankEject(BiPredicate<DataType, IExtendedFluidTank> v);
 
     void mek_addon_lib$setCanChemicalTankEject(BiPredicate<DataType, IChemicalTank> v);
+
+    void mek_addon_lib$setEjectionTargetModifier(TransmissionType type,RelativeSide side,IEjectionTargetModifier modifier);
+
+    void mek_addon_lib$clearCapabilityCaches();
 }

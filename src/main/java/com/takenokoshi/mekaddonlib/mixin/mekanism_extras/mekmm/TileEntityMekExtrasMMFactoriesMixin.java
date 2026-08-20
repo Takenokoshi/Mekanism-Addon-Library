@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.jerry.mekextras.common.integration.mekaf.tile.factory.base.TileEntityExtraAdvancedFactoryBase;
 import com.jerry.mekextras.common.integration.mekmm.tile.factory.TileEntityExtraMoreMachineFactory;
-import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityMekanismMixin;
+import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityConfigurableMachineMixin;
 import com.takenokoshi.mekaddonlib.upgrade.AdditionalUpgradeUtils;
 
 import mekanism.api.Upgrade;
@@ -18,7 +18,7 @@ import mekanism.common.util.MekanismUtils;
         TileEntityExtraMoreMachineFactory.class,
         TileEntityExtraAdvancedFactoryBase.class,
 }, remap = false)
-public class TileEntityMekExtrasMMFactoriesMixin extends TileEntityMekanismMixin {
+public class TileEntityMekExtrasMMFactoriesMixin extends TileEntityConfigurableMachineMixin {
 
     @Shadow(remap = false)
     private int upgradeMaxOperations;

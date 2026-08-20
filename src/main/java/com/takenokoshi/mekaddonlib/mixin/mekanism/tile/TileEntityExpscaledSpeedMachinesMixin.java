@@ -22,7 +22,7 @@ import mekanism.common.tile.machine.TileEntityRotaryCondensentrator;
         TileEntityPigmentMixer.class,
         TileEntityRotaryCondensentrator.class,
 }, remap = false)
-public class TileEntityExpscaledSpeedMachinesMixin extends TileEntityMekanismMixin {
+public class TileEntityExpscaledSpeedMachinesMixin extends TileEntityConfigurableMachineMixin {
 
     @Shadow(remap = false)
     private int baselineMaxOperations;

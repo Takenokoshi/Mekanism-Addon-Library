@@ -13,7 +13,7 @@ import mekanism.common.tile.factory.TileEntityFactory;
 import mekanism.common.util.MekanismUtils;
 
 @Mixin(value = { TileEntityFactory.class }, remap = false)
-public class TileEntityFactoryMixin extends TileEntityMekanismMixin {
+public class TileEntityFactoryMixin extends TileEntityConfigurableMachineMixin {
 
     @Shadow(remap = false)
     private int ticksRequired;

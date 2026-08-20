@@ -9,7 +9,7 @@ import com.jerry.meklm.common.tile.machine.TileEntityLargePigmentMixer;
 import com.jerry.meklm.common.tile.machine.TileEntityLargeRotaryCondensentrator;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityMekanismMixin;
+import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityConfigurableMachineMixin;
 import com.takenokoshi.mekaddonlib.upgrade.AdditionalUpgradeUtils;
 
 import mekanism.api.Upgrade;
@@ -21,7 +21,7 @@ import mekanism.common.tile.component.TileComponentUpgrade;
         TileEntityLargePigmentMixer.class,
         TileEntityLargeRotaryCondensentrator.class,
 }, remap = false)
-public class TileEntityLargeMachinesMixin extends TileEntityMekanismMixin {
+public class TileEntityLargeMachinesMixin extends TileEntityConfigurableMachineMixin {
 
     @WrapOperation(method = "recalculateUpgrades", at = @At(value = "INVOKE", target = "Lmekanism/common/tile/component/TileComponentUpgrade;getUpgrades(Lmekanism/api/Upgrade;)I"))
     private int mek_addon_lib$modifyUpgradeCount(TileComponentUpgrade upgradeComponent,

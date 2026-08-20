@@ -5,7 +5,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import fixdol.mekanismelements.common.tile.prefab.MSTileEntityProgressMachine;
-import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityMekanismMixin;
+
+import com.takenokoshi.mekaddonlib.mixin.mekanism.tile.TileEntityConfigurableMachineMixin;
 import com.takenokoshi.mekaddonlib.upgrade.AdditionalUpgradeUtils;
 
 import mekanism.api.Upgrade;
@@ -13,7 +14,7 @@ import mekanism.common.tile.base.TileEntityMekanism;
 import mekanism.common.util.MekanismUtils;
 
 @Mixin(value = { MSTileEntityProgressMachine.class }, remap = false)
-public class MSTileEntityProgressMachineMixin extends TileEntityMekanismMixin {
+public class MSTileEntityProgressMachineMixin extends TileEntityConfigurableMachineMixin {
 
     @Shadow(remap = false)
     private int baseTicksRequired;
