@@ -13,9 +13,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -78,6 +75,7 @@ public class TileComponentEjectorMixin implements IEjectorComponentAccess {
     @Unique
     public void mek_addon_lib$setEjectionTargetModifier(TransmissionType type, RelativeSide side,
             IEjectionTargetModifier modifier) {
+        mek_addon_lib$initModifierMap();
         mek_addon_lib$ejectionTargetModifiers.get(type).put(side, modifier);
     }
 
@@ -148,15 +146,17 @@ public class TileComponentEjectorMixin implements IEjectorComponentAccess {
         return empty;
     }
 
-    @Inject(method = "<init>", at = @At("TAIL"))
-    private void mek_addon_lib$initUniqueFields(CallbackInfo ci) {
-        mek_addon_lib$ejectionTargetModifiers = new EnumMap<>(TransmissionType.class);
-        Map<RelativeSide, IEjectionTargetModifier> map = new EnumMap<>(RelativeSide.class);
-        for (RelativeSide side : RelativeSide.values()) {
-            map.put(side, IEjectionTargetModifier.EMPTY_MODIFIER);
+    @Unique
+    private void mek_addon_lib$initModifierMap() {
+        if (mek_addon_lib$ejectionTargetModifiers != null) {
+            return;
         }
+        mek_addon_lib$ejectionTargetModifiers = new EnumMap<>(TransmissionType.class);
         for (TransmissionType type : TransmissionType.values()) {
-            mek_addon_lib$ejectionTargetModifiers.put(type, new EnumMap<>(map));
+            mek_addon_lib$ejectionTargetModifiers.put(type, new EnumMap<>(RelativeSide.class));
+            for (RelativeSide side : RelativeSide.values()) {
+                mek_addon_lib$ejectionTargetModifiers.get(type).put(side, IEjectionTargetModifier.EMPTY_MODIFIER);
+            }
         }
     }
 
@@ -168,6 +168,7 @@ public class TileComponentEjectorMixin implements IEjectorComponentAccess {
             Map<Direction, BlockCapabilityCache<?, @Nullable Direction>> typeCapabilityCaches, Set<Direction> sides,
             IMultiTypeCapability<HANDLER, ?> capability,
             Operation<List<BlockCapabilityCache<HANDLER, @Nullable Direction>>> original) {
+        mek_addon_lib$initModifierMap();
         if (capability == Capabilities.FLUID) {
             return mek_addon_lib$getCapabilityCaches(TransmissionType.FLUID, level, pos, typeCapabilityCaches,
                     sides, capability);
@@ -189,6 +190,7 @@ public class TileComponentEjectorMixin implements IEjectorComponentAccess {
         Direction tileFacing = this.tile.facingSupplier.get();
         for (Direction side : sides) {
             RelativeSide relativeSide = RelativeSide.fromDirections(tileFacing, side);
+            mek_addon_lib$initModifierMap();
             IEjectionTargetModifier modifier = this.mek_addon_lib$ejectionTargetModifiers.get(type)
                     .get(relativeSide);
             BlockCapabilityCache<HANDLER, @Nullable Direction> cache = (BlockCapabilityCache<HANDLER, @Nullable Direction>) typeCapabilityCaches
@@ -211,8 +213,8 @@ public class TileComponentEjectorMixin implements IEjectorComponentAccess {
             Direction direction,
             Operation<BlockCapabilityCache<IItemHandler, Direction>> original) {
         Direction tileFacing = tile.facingSupplier.get();
-        RelativeSide side = RelativeSide.fromDirections(tileFacing, direction);
-
+        RelativeSide side = RelativeSide.fromDirections(tileFacing, direction.getOpposite());
+        mek_addon_lib$initModifierMap();
         IEjectionTargetModifier modifier = mek_addon_lib$ejectionTargetModifiers
                 .get(TransmissionType.ITEM)
                 .get(side);
@@ -228,7 +230,8 @@ public class TileComponentEjectorMixin implements IEjectorComponentAccess {
     private BlockEnergyCapabilityCache mek_addon_lib$modifyEnergyCache(ServerLevel level, BlockPos pos,
             Direction direction, Operation<BlockEnergyCapabilityCache> original) {
         Direction tileFacing = tile.facingSupplier.get();
-        RelativeSide side = RelativeSide.fromDirections(tileFacing, direction);
+        RelativeSide side = RelativeSide.fromDirections(tileFacing, direction.getOpposite());
+        mek_addon_lib$initModifierMap();
         IEjectionTargetModifier modifier = mek_addon_lib$ejectionTargetModifiers.get(TransmissionType.ENERGY).get(side);
         return original.call(level, modifier.modifyPosition(pos, tileFacing),
                 modifier.modifyDirection(direction, tileFacing));
