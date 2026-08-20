@@ -14,7 +14,7 @@ public class MekALPacketHandler extends BasePacketHandler {
 
     @Override
     protected void registerClientToServer(PacketRegistrar registrar) {
-        registrar.configuration(MekALFactoryToggleSortFactory.TYPE, MekALFactoryToggleSortFactory.STREAM_CODEC);
+        registrar.play(MekALFactoryToggleSortFactory.TYPE, MekALFactoryToggleSortFactory.STREAM_CODEC);
     }
 
     @Override
